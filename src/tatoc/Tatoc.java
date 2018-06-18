@@ -1,6 +1,12 @@
 package tatoc;
 
+import java.util.Set;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -67,6 +73,7 @@ public class Tatoc {
 			WebElement proceedLink = driver.findElement(By.xpath("//a[text()='Proceed']"));
 			proceedLink.click();
 			
+			
 			WebElement source=driver.findElement(By.id("dragbox"));
 			WebElement dest=driver.findElement(By.id("dropbox"));
 			
@@ -125,11 +132,3 @@ public class Tatoc {
 	}
 
 }
-
-				
-				
-			
-			
-			
-			
-	
