@@ -67,14 +67,69 @@ public class Tatoc {
 			WebElement proceedLink = driver.findElement(By.xpath("//a[text()='Proceed']"));
 			proceedLink.click();
 			
+			WebElement source=driver.findElement(By.id("dragbox"));
+			WebElement dest=driver.findElement(By.id("dropbox"));
 			
+			Actions a=new Actions(driver);
 				
-				
+			a.dragAndDrop(source,dest).build().perform();
+			
+			WebElement proceedd = driver.findElement(By.xpath("//a[text()='Proceed']"));
+			proceedd.click();
+			
+			String parentWindow = driver.getWindowHandle();
+			
+			WebElement launch=driver.findElement(By.xpath("//a[text()='Launch Popup Window']"));
+			launch.click();
+			
+			Set<String> windowHandles = driver.getWindowHandles();
+			
+			windowHandles.remove(parentWindow);
+			
+			driver.switchTo().window((String)(windowHandles.toArray())[0]);
+			 
+			System.out.println("Switched to New Window");
 			
 			
+			WebElement nameTextBox=driver.findElement(By.id("name"));
+			nameTextBox.sendKeys("shubhi");
 			
-			//driver.quit();
+			WebElement submitButton=driver.findElement(By.id("submit"));
+			submitButton.click();
 			
+			
+			driver.switchTo().window(parentWindow);
+			
+			System.out.println("Switched back to Original Window");
+			
+			WebElement proceedfurther=driver.findElement(By.xpath("//a[text()='Proceed']"));
+			proceedfurther.click();
+			
+			WebElement generatetoken=driver.findElement(By.xpath("//a[text()='Generate Token']"));
+			generatetoken.click();
+			
+			
+			WebElement token = driver.findElement(By.id("token"));
+			
+			String tokenValue = token.getText().substring(7);
+			System.out.println("Token Value: " + tokenValue);
+			
+			Cookie name = new Cookie("Token", tokenValue);//adding cookies using function
+			driver.manage().addCookie(name);
+			
+			WebElement proceed2=driver.findElement(By.xpath("//a[text()='Proceed']"));
+			proceed2.click();
+			
+			
+
 	}
 
 }
+
+				
+				
+			
+			
+			
+			
+	
